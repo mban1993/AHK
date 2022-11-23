@@ -1,0 +1,119 @@
+Gui, Add, Text, x2 y9 w130 h20 , ===ControlFocus===
+Gui, Add, Text, x2 y29 w50 h20 , classNN:
+Gui, Add, Edit, x52 y29 w200 h20 vfocusclass, 
+Gui, Add, Text, x2 y59 w50 h20 , WinTitle
+Gui, Add, Edit, x52 y59 w200 h20 vfocustitle, 
+
+Gui, Add, Text, x2 y99 w130 h20 , ===ControlSend===
+Gui, Add, Text, x2 y119 w50 h20 , classNN:
+Gui, Add, Text, x2 y139 w50 h20 , WinTitle
+Gui, Add, Edit, x52 y119 w200 h20 vsendclass, 
+Gui, Add, Edit, x52 y139 w200 h20 vsendtitle, 
+
+Gui, Add, Text, x2 y189 w130 h20 , ===ControlClick===
+Gui, Add, Text, x2 y209 w50 h20 , classNN:
+Gui, Add, Text, x2 y239 w50 h20 , WinTitle
+Gui, Add, Edit, x52 y209 w200 h20 vclickclass, 
+Gui, Add, Edit, x52 y239 w200 h20 vclicktitle, 
+Gui, Add, Button, x262 y29 w70 h50 gFocus, Focus
+Gui, Add, Button, x262 y109 w70 h50 gControlSend, ControlSend
+Gui, Add, Button, x262 y209 w70 h50 gClick, Click
+
+Gui, Add, Text, x2 y279 w130 h20 , ===ControlSetText===
+Gui, Add, Text, x2 y299 w50 h20 , classNN:
+Gui, Add, Text, x2 y329 w50 h20 , new text
+Gui, Add, Text, x2 y359 w50 h20 , WinTitle
+Gui, Add, Edit, x52 y299 w200 h20 vtextclass, 
+Gui, Add, Edit, x52 y329 w200 h20 vnewtext, 
+Gui, Add, Edit, x52 y359 w200 h20 vtexttitle, 
+Gui, Add, Button, x262 y319 w70 h50 gSetText, Set
+
+Gui, Add, Text, x2 y409 w130 h20 , ===Post/SendMessage===
+Gui, Add, Text, x2 y429 w50 h20 , Msg
+Gui, Add, Text, x2 y459 w50 h20 , wParam
+Gui, Add, Text, x2 y489 w50 h20 , lParam
+Gui, Add, Text, x2 y519 w50 h20 , classNN
+Gui, Add, Text, x2 y549 w50 h20 , WinTitle
+Gui, Add, Edit, x52 y429 w200 h20 vmsg, 
+Gui, Add, Edit, x52 y459 w200 h20 vwparam, 
+Gui, Add, Edit, x52 y489 w200 h20 vlparam, 
+Gui, Add, Edit, x52 y519 w200 h20 vpostsendclass, 
+Gui, Add, Edit, x52 y549 w200 h20 vpostsendtitle, 
+Gui, Add, Button, x262 y449 w70 h50 gSendMessage, Send
+Gui, Add, Button, x262 y509 w70 h50 gPostMessage, Post
+Gui, Add, Edit, x52 y159 w200 h20 vkeys, 
+Gui, Add, Text, x2 y159 w50 h20 , keys
+Gui, Show, x127 y87 h601 w363 Center, Control Checker
+Return
+
+GuiClose:
+ExitApp
+
+
+Focus:
+{
+WinMinimize, ahk_exe AdvancedTool.exe
+Sleep 900
+GuiControlGet, focusclass
+GuiControlGet, focustitle
+ControlFocus, %focusclass%, %focustitle%
+}
+return
+
+ControlSend:
+{
+WinMinimize, ahk_exe AdvancedTool.exe
+Sleep 900
+GuiControlGet, sendclass
+GuiControlGet, sendtitle
+GuiControlGet, keys
+ControlSend, %sendclass%, %keys%, %sendtitle%
+}
+return
+
+Click:
+{
+WinMinimize, ahk_exe AdvancedTool.exe
+Sleep 900
+GuiControlGet, clickclass
+GuiControlGet, clicktitle
+ControlClick, %clickclass%, %clicktitle%
+}
+return
+
+SetText:
+{
+WinMinimize, ahk_exe AdvancedTool.exe
+Sleep 900
+GuiControlGet, textclass
+GuiControlGet, newtext
+GuiControlGet, texttitle
+ControlSetText, %textclass%, %newtext%, %texttitle%
+}
+return
+
+SendMessage:
+{
+WinMinimize, ahk_exe AdvancedTool.exe
+Sleep 900
+GuiControlGet, msg
+GuiControlGet, wparam
+GuiControlGet, lparam
+GuiControlGet, postsendclass
+GuiControlGet, postsendtitle
+SendMessage, %msg%, %wparam%,%lparam%,%postsendclass%,%postsendtitle%
+}
+return
+
+PostMessage:
+{
+WinMinimize, ahk_exe AdvancedTool.exe
+Sleep 900
+GuiControlGet, msg
+GuiControlGet, wparam
+GuiControlGet, lparam
+GuiControlGet, postsendclass
+GuiControlGet, postsendtitle
+PostMessage, %msg%, %wparam%,%lparam%,%postsendclass%,%postsendtitle%
+}
+return
